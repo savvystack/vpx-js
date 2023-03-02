@@ -7,7 +7,7 @@
 start ::= Program
 
 Format ::= LogicalLine*
-Program ::= OptionStatement* (Statement | MethodDeclaration | ClassDeclaration)*
+Program ::= Prologue? OptionStatement* (Statement | MethodDeclaration | ClassDeclaration)*
 
 
 /* 13.1 Lexical Grammar */
@@ -246,3 +246,14 @@ SubExpression ::= (SimpleNameExpression | MemberAccessExpression) (OpenParenthes
 Value ::= LogicalNotOperatorExpression | UnaryExpression | SubExpression | SimpleExpression
 
 BooleanExpression ::= Expression
+
+/* Prologue - technically this is not part of the VBA language, rather artifacts of MS Access' export functionality */
+
+Prologue ::= PrologueClassDeclaration? ProloguePropertyBlock? PrologueAttributes?
+PrologueClassDeclaration ::= 'VERSION' WS PrologueVersionValue WS 'Class' LineTerminator
+ProloguePropertyBlock ::= 'BEGIN' LineTerminator (PrologueAttribute LineTerminator)* 'End' LineTerminator
+PrologueAttributes ::= ('Attribute' WS PrologueAttribute LineTerminator)*
+PrologueAttribute ::= WS* PrologueAttrName WS* Equals WS* PrologueAttrValue WS*
+PrologueAttrName ::= [A-Za-z0-9_]+
+PrologueAttrValue ::= 'True' | 'False' | '"' ([^"] | '""')* '"' | [+\-]?[0-9]+
+PrologueVersionValue ::= [0-9]+ Period [0-9]+

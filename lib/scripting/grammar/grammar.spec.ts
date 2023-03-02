@@ -131,6 +131,19 @@ describe('The scripting grammar - VBA features', () => {
 		expect(js).to.equal(`Call MyFunc,,z\n`);
 	})
 
+	it('should accept files begin with a prolog section', () => {
+		const vbs = `
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "Form_frmAddScopeRec"
+Attribute VB_GlobalNameSpace = False
+`
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`VERSION 1.0 Class\nBEGIN\nMultiUse=-1\nEnd\nAttribute VB_Name="Form_frmAddScopeRec"\nAttribute VB_GlobalNameSpace=False\n`);
+	})
+
 	// it('should accept Option Explicit with argument', () => {
 	// 	const vbs = `Option Explicit on`;
 	// 	const js = grammar.format(vbs);
