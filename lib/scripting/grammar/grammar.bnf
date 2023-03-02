@@ -7,7 +7,7 @@
 start ::= Program
 
 Format ::= LogicalLine*
-Program ::= OptionStatement? (Statement | MethodDeclaration | ClassDeclaration)*
+Program ::= OptionStatement* (Statement | MethodDeclaration | ClassDeclaration)*
 
 
 /* 13.1 Lexical Grammar */
@@ -82,9 +82,10 @@ AccessModifier ::= 'Public' WS 'Default' | 'Public' | 'Private'
 StatementTerminator ::= ':'? LineTerminator | ':'
 StatementTerminatorInline ::= ':'
 
-OptionStatement ::= OptionExplicitStatement
-OptionExplicitStatement ::= 'Option' WS 'Explicit' OnOff? StatementTerminator
-OnOff ::= 'On' | 'Off'
+OptionStatement ::= OptionExplicitStatement | OptionCompareStatement
+OptionExplicitStatement ::= 'Option' WS 'Explicit' StatementTerminator
+OptionCompareStatement ::= 'Option' WS 'Compare' WS OptionCompareArg StatementTerminator
+OptionCompareArg ::= 'Binary' | 'Text' | 'Database'
 
 /* 13.3.3 Types */
 

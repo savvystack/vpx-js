@@ -60,12 +60,6 @@ describe('The scripting grammar - format', () => {
 		const js = grammar.format(vbs);
 		expect(js).to.equal(`x=x+5\nx=x+10\n`);
 	});
-
-	it('should accept escaped identifier', () => {
-		const vbs = `Dim [to],[next],[item],record : [to] = 12 : [next] = 13`;
-		const js = grammar.format(vbs);
-		expect(js).to.equal(`Dim [to],[next],[item],record:[to]=12:[next]=13\n`);
-	})
 });
 
 describe('The scripting grammar - transpile', () => {
@@ -95,3 +89,37 @@ describe('The scripting grammar - transpile', () => {
 	// 	expect(() => grammar.transpile(vbs)).not.to.throw(Error);
 	// });
 });
+
+describe('The scripting grammar - VBA features', () => {
+	it('should accept escaped identifier', () => {
+		const vbs = `Dim [to],[next],[item],record : [to] = 12 : [next] = 13\n`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Dim [to],[next],[item],record:[to]=12:[next]=13\n`);
+	})
+
+	it('should accept Option Compare statement', () => {
+		const vbs = `Option Compare Database`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Option Compare Database\n`);
+	})
+
+	it('should accept more than one Option statements', () => {
+		const vbs = `Option Compare Database: Option Explicit`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Option Compare Database:Option Explicit\n`);
+	})
+
+	// it('should accept Option Explicit with argument', () => {
+	// 	const vbs = `Option Explicit on`;
+	// 	const js = grammar.format(vbs);
+	// 	expect(js).to.equal(`Option Explicit On\n`);
+	// })
+
+	// it('should not accept Option Compare without argument', () => {
+	// 	const vbs = `Option Compare`;
+	// 	const js = grammar.format(vbs);
+	// 	expect(js).to.equal(`Option Compare\n`);
+	// })
+
+});
+
