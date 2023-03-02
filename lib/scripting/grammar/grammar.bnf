@@ -116,7 +116,7 @@ UserDefinedType ::= Identifier ( Period Identifier )*
 MethodMemberDeclaration ::= MethodDeclaration
 MethodDeclaration ::= SubDeclaration | FunctionDeclaration
 SubSignature ::= 'Sub' WS Identifier ( OpenParenthesis ParameterList? CloseParenthesis )?
-FunctionSignature ::= 'Function' WS Identifier ( OpenParenthesis ParameterList? CloseParenthesis )?
+FunctionSignature ::= 'Function' WS Identifier ( OpenParenthesis ParameterList? CloseParenthesis )? ReturnTypeDeclarator?
 SubDeclaration ::= (AccessModifier WS)? SubSignature (WS | StatementTerminator) Block? 'End' WS 'Sub' StatementTerminator
 FunctionDeclaration ::= (AccessModifier WS)? FunctionSignature (WS | StatementTerminator) Block? 'End' WS 'Function' StatementTerminator
 
@@ -126,6 +126,8 @@ ParameterModifier ::= 'ByVal' | 'ByRef'
 ParameterIdentifier ::= Identifier
 ParameterTypeDeclarator ::= WS+ 'As' WS+ ParameterType
 ParameterType ::= BuiltInType | UserDefinedType
+
+ReturnTypeDeclarator ::= WS+ 'As' WS+ ParameterType
 
 ConstructorMemberDeclaration ::= (ConstructorModifier? WS) 'Sub' WS 'Class_Initialize' ( OpenParenthesis CloseParenthesis )? StatementTerminator Block? 'End' WS 'Sub' StatementTerminator
 ConstructorModifier ::= AccessModifier
