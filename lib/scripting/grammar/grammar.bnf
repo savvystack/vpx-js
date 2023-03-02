@@ -30,7 +30,12 @@ Comment ::= ("'" | 'REM') [^#x0d#x0a]* {ignoreCase=true}
 
 /* 13.1.2 Identifiers */
 
-Identifier ::= !Keyword [A-Za-z_] [A-Za-z0-9_]*
+Identifier ::= NonEscapedIdentifier | EscapedIdentifier
+NonEscapedIdentifier ::= !Keyword IdentifierName
+EscapedIdentifier ::= '[' IdentifierName ']'
+IdentifierName ::= IdentifierStart IdentifierCharacter*
+IdentifierStart ::= [A-Za-z_]
+IdentifierCharacter ::= [A-Za-z0-9_]
 IdentifierOrKeyword ::= Identifier | Keyword
 
 /* 13.1.3 Keywords */

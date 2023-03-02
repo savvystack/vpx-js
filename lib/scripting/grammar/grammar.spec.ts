@@ -60,6 +60,12 @@ describe('The scripting grammar - format', () => {
 		const js = grammar.format(vbs);
 		expect(js).to.equal(`x=x+5\nx=x+10\n`);
 	});
+
+	it('should accept escaped identifier', () => {
+		const vbs = `Dim [to],[next],[item],record : [to] = 12 : [next] = 13`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Dim [to],[next],[item],record:[to]=12:[next]=13\n`);
+	})
 });
 
 describe('The scripting grammar - transpile', () => {
