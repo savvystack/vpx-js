@@ -144,6 +144,11 @@ Attribute VB_GlobalNameSpace = False
 		expect(js).to.equal(`VERSION 1.0 Class\nBEGIN\nMultiUse=-1\nEnd\nAttribute VB_Name="Form_frmAddScopeRec"\nAttribute VB_GlobalNameSpace=False\n`);
 	})
 
+	it('should accecpt type character in identifier', () => {
+		const vbs = `Dim a$, i%, j#, k!, for$\n`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Dim a$,i%,j#,k!,for$\n`);
+	})
 	// it('should accept Option Explicit with argument', () => {
 	// 	const vbs = `Option Explicit on`;
 	// 	const js = grammar.format(vbs);
