@@ -38,11 +38,11 @@ IdentifierStart ::= [A-Za-z_]
 IdentifierCharacter ::= [A-Za-z0-9_]
 IdentifierOrKeyword ::= Identifier | Keyword
 
-TypeCharacter ::= IntegerTypeCharacter | LongTypeCharacter | DecimalTypeCharacter | SingleTypeCharacter | DoubleTypeCharacter | StringTypeCharacter
+TypeCharacter ::= IntegerTypeCharacter | DecimalTypeCharacter | DoubleTypeCharacter | StringTypeCharacter
 IntegerTypeCharacter ::= '%'
-LongTypeCharacter ::= '&'
+LongTypeCharacter ::= '&' /* not used as it causes conflict with the string concatenation operator */
 DecimalTypeCharacter ::= '@'
-SingleTypeCharacter ::= '!'
+SingleTypeCharacter ::= '!' /* not used as it causes conflict with the dictionary accesss operator */
 DoubleTypeCharacter ::= '#'
 StringTypeCharacter ::= '$'
 
@@ -235,7 +235,7 @@ SimpleExpression ::= LiteralExpression | ParenthesizedExpression | SimpleNameExp
 LiteralExpression ::= Literal
 ParenthesizedExpression ::= OpenParenthesis Expression CloseParenthesis
 SimpleNameExpression ::= Identifier
-MemberAccessExpression ::= Period IdentifierOrKeyword
+MemberAccessExpression ::= Period IdentifierOrKeyword | '!' Identifier
 
 InvocationExpression ::= InvocationMemberAccessExpression | SimpleNameExpression ( ( OpenParenthesis ArgumentList CloseParenthesis )* InvocationMemberAccessExpression | WS ArgumentList | ArgumentList+ | OpenParenthesis ArgumentList CloseParenthesis | EmptyArgument+ InvocationMemberAccessExpression? )?
 InvocationMemberAccessExpression ::= MemberAccessExpression ( ( OpenParenthesis ArgumentList CloseParenthesis | EmptyArgument )* MemberAccessExpression )* ( WS ArgumentList | ArgumentList+ | EmptyArgument+ )?

@@ -145,9 +145,9 @@ Attribute VB_GlobalNameSpace = False
 	})
 
 	it('should accecpt type character in identifier', () => {
-		const vbs = `Dim a$, i%, j#, k!, for$\n`;
+		const vbs = `Dim a$, j#, for$\n`;
 		const js = grammar.format(vbs);
-		expect(js).to.equal(`Dim a$,i%,j#,k!,for$\n`);
+		expect(js).to.equal(`Dim a$,j#,for$\n`);
 	})
 
 	it('should accept type declaration in function paramerters', () => {
@@ -160,6 +160,24 @@ Attribute VB_GlobalNameSpace = False
 		const vbs = `Function x(a as Integer, b as String) as Integer: return a: End Function`;
 		const js = grammar.format(vbs);
 		expect(js).to.equal(`Function x(a As Integer,b As String) As Integer:return a:End Function\n`);
+	})
+
+	it('should accept "" as escaped dobule-quote', () => {
+		const vbs = `s = "he said ""this should work"""`
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`s="he said ""this should work"""\n`);
+	})
+
+	it('should accept & for string concatenation', () => {
+		const vbs = `s = "s1" & x & "s2"`
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`s="s1"&x&"s2"\n`);
+	})
+
+	it('should accept ! for dictionary access on object', () => {
+		const vbs = `s = obj!key`
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`s=obj!key\n`);
 	})
 
 	// it('should accept Option Explicit with argument', () => {
