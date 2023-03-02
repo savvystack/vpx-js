@@ -125,6 +125,12 @@ describe('The scripting grammar - VBA features', () => {
 		expect(js).to.equal(`Call MyFunc(x,y,z)\n`);
 	})
 
+	it('should allow omitted argments in argument list', () => {
+		const vbs = `call MyFunc , , z`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Call MyFunc,,z\n`);
+	})
+
 	// it('should accept Option Explicit with argument', () => {
 	// 	const vbs = `Option Explicit on`;
 	// 	const js = grammar.format(vbs);

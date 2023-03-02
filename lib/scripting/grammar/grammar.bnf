@@ -227,7 +227,7 @@ MemberAccessExpression ::= Period IdentifierOrKeyword
 InvocationExpression ::= InvocationMemberAccessExpression | SimpleNameExpression ( ( OpenParenthesis ArgumentList CloseParenthesis )* InvocationMemberAccessExpression | WS ArgumentList | ArgumentList+ | OpenParenthesis ArgumentList CloseParenthesis | EmptyArgument+ InvocationMemberAccessExpression? )?
 InvocationMemberAccessExpression ::= MemberAccessExpression ( ( OpenParenthesis ArgumentList CloseParenthesis | EmptyArgument )* MemberAccessExpression )* ( WS ArgumentList | ArgumentList+ | EmptyArgument+ )?
 EmptyArgument ::= OpenParenthesis CloseParenthesis
-ArgumentList ::= Comma? Expression (Comma ArgumentList?)*
+ArgumentList ::= Comma? Expression? (Comma ArgumentList?)*
 
 LogicalOperatorExpression ::= RelationalOperatorExpression (WS ('And' | 'Or' | 'Xor' | 'Eqv') WS? RelationalOperatorExpression)*
 RelationalOperatorExpression ::= AdditionOperatorExpression ( ( ([<] [=>]?) | ([>] [=<]?) | ('=' [<>]?) ) AdditionOperatorExpression)*
