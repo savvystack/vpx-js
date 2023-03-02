@@ -7,13 +7,7 @@
 		"moduleResolution": "node",
 		"allowJs": true
 	},
-	"exclude": [
-		".nyc_output",
-		"node_modules",
-		"build",
-		"dist",
-		"coverage",
-		"res",
-		"test/fixtures"
+	"include": [
+		"bin/vbs2js.ts",
 	]
 }

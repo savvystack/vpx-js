@@ -20,7 +20,7 @@
 import { Grammars, IToken, Parser } from 'ebnf';
 import { generate } from 'escodegen';
 import { Program, Statement } from 'estree';
-import { getTextFile } from '../../refs.node';
+import { getTextFile } from '../vbs-scripts.node';
 import { logger, progress } from '../../util/logger';
 import { program } from '../estree';
 import { ppArray } from '../post-process/array';
