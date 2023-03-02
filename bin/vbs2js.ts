@@ -19,8 +19,8 @@
  */
 
 import { existsSync, readFileSync } from 'fs';
-import { Progress } from '../lib/util/logger';
 import { Grammar } from '../lib/scripting/grammar/grammar';
+import { Progress } from '../lib/util/logger';
 
 /* tslint:disable: no-console */
 (() => {

@@ -25,7 +25,7 @@ import {
 	Identifier,
 	MethodDefinition,
 	Statement,
-	VariableDeclaration
+	VariableDeclaration,
 } from 'estree';
 import {
 	assignmentExpression,
@@ -40,7 +40,7 @@ import {
 	returnStatement,
 	thisExpression,
 	variableDeclaration,
-	variableDeclarator
+	variableDeclarator,
 } from '../estree';
 import { ESIToken } from '../grammar/grammar';
 

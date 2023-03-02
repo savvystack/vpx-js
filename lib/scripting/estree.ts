@@ -198,7 +198,7 @@ export function callExpression(callee: Expression, args: Expression[] | SpreadEl
 		type: 'CallExpression',
 		callee,
 		arguments: args,
-		optional: false // added to address a tsc error, need to revisit
+		optional: false, // added to address a tsc error, need to revisit
 	};
 }
 
@@ -238,7 +238,7 @@ export function memberExpression(object: Expression | Super, prop: Expression, c
 		object,
 		property: prop,
 		computed,
-		optional: false // added to address a tsc error, need to revisit
+		optional: false, // added to address a tsc error, need to revisit
 	}, node);
 }
 
@@ -322,7 +322,7 @@ export function forOfStatement(
 		left,
 		right,
 		body,
-		await: false
+		await: false,
 	};
 }
 

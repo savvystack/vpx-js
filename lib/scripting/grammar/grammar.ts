@@ -20,7 +20,6 @@
 import { Grammars, IToken, Parser } from 'ebnf';
 import { generate } from 'escodegen';
 import { Program, Statement } from 'estree';
-import { getTextFile } from '../vbs-scripts.node';
 import { logger, progress } from '../../util/logger';
 import { program } from '../estree';
 import { ppArray } from '../post-process/array';
@@ -38,6 +37,7 @@ import { ppLoop } from '../post-process/loop';
 import { ppMethod } from '../post-process/method';
 import { ppVarDecl } from '../post-process/vardecl';
 import { ppWith } from '../post-process/with';
+import { getTextFile } from '../vbs-scripts.node';
 import { RULES } from './rules';
 
 const dashAst = require('dash-ast');
