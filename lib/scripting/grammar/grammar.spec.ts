@@ -109,6 +109,22 @@ describe('The scripting grammar - VBA features', () => {
 		expect(js).to.equal(`Option Compare Database:Option Explicit\n`);
 	})
 
+	it('shoule allow Dim...As... construct', () => {
+		const vbs = `Dim a as String, b,c as Integer, d as Date, e as MyClass.Subclass`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Dim a As String,b,c As Integer,d As Date,e As MyClass.Subclass\n`);
+	})
+
+	it('should accept argument list enclosed in parentheses', () => {
+		const vbs2 = `call MyFunc x, y, z`;
+		const js2 = grammar.format(vbs2);
+		expect(js2).to.equal(`Call MyFunc x,y,z\n`);
+
+		const vbs = `call MyFunc(x, y, z)`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Call MyFunc(x,y,z)\n`);
+	})
+
 	// it('should accept Option Explicit with argument', () => {
 	// 	const vbs = `Option Explicit on`;
 	// 	const js = grammar.format(vbs);
