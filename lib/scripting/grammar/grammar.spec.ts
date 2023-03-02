@@ -149,6 +149,12 @@ Attribute VB_GlobalNameSpace = False
 		const js = grammar.format(vbs);
 		expect(js).to.equal(`Dim a$,i%,j#,k!,for$\n`);
 	})
+
+	it('should accept type declaration in function paramerters', () => {
+		const vbs = `Function x(a as Integer, b as String): return a: End Function`;
+		const js = grammar.format(vbs);
+		expect(js).to.equal(`Function x(a As Integer,b As String):return a:End Function\n`);
+	})
 	// it('should accept Option Explicit with argument', () => {
 	// 	const vbs = `Option Explicit on`;
 	// 	const js = grammar.format(vbs);
