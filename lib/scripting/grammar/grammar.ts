@@ -50,6 +50,7 @@ export interface ESIToken extends IToken {
 
 export class Grammar {
 	private readonly GRAMMAR_KEYWORDS: string[] = [
+		'As',
 		'And',
 		'ByVal',
 		'ByRef',
