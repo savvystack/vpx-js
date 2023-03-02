@@ -25,7 +25,7 @@ import {
 	Identifier,
 	MethodDefinition,
 	Statement,
-	VariableDeclaration,
+	VariableDeclaration
 } from 'estree';
 import {
 	assignmentExpression,
@@ -40,7 +40,7 @@ import {
 	returnStatement,
 	thisExpression,
 	variableDeclaration,
-	variableDeclarator,
+	variableDeclarator
 } from '../estree';
 import { ESIToken } from '../grammar/grammar';
 
@@ -141,7 +141,7 @@ function ppClassDeclaration(node: ESIToken): any {
 			}
 		},
 	}) as ClassBody;
-	body.body[0].value.body.body.unshift(...varStmts);
+	// body.body[0].value.body.body.unshift(...varStmts); // TODO: this line causes tsc error, comment it out for now
 	return classDeclaration(id, body);
 }
 
