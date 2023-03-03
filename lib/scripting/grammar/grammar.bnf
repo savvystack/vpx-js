@@ -202,11 +202,11 @@ DoTopLoopStatement ::= 'Do' ( WS WhileOrUntil WS BooleanExpression )? StatementT
 DoBottomLoopStatement ::= 'Do' StatementTerminator Block? 'Loop' WS WhileOrUntil WS BooleanExpression StatementTerminator
 WhileOrUntil ::= 'While' | 'Until'
 ForStep ::= 'Step' {ignoreCase=true}
-ForStatement ::= 'For' WS LoopControlVariable Equals Expression WS 'To' WS Expression ( WS ForStep WS? Expression )? StatementTerminator Block? 'Next' StatementTerminator
-ForStatementInline ::= 'For' WS LoopControlVariable Equals Expression WS 'To' WS Expression ( WS ForStep WS? Expression )? StatementTerminatorInline StatementsInline 'Next'
+ForStatement ::= 'For' WS LoopControlVariable Equals Expression WS 'To' WS Expression ( WS ForStep WS? Expression )? StatementTerminator Block? 'Next' (WS LoopControlVariable)? StatementTerminator
+ForStatementInline ::= 'For' WS LoopControlVariable Equals Expression WS 'To' WS Expression ( WS ForStep WS? Expression )? StatementTerminatorInline StatementsInline 'Next' (WS LoopControlVariable)?
 LoopControlVariable ::= Identifier | Expression
-ForEachStatement ::= 'For' WS 'Each' WS LoopControlVariable WS 'In' WS Expression StatementTerminator Block? 'Next' StatementTerminator
-ForEachStatementInline ::= 'For' WS 'Each' WS LoopControlVariable WS 'In' WS Expression StatementTerminatorInline StatementsInline 'Next'
+ForEachStatement ::= 'For' WS 'Each' WS LoopControlVariable WS 'In' WS Expression StatementTerminator Block? 'Next' (WS LoopControlVariable)? StatementTerminator
+ForEachStatementInline ::= 'For' WS 'Each' WS LoopControlVariable WS 'In' WS Expression StatementTerminatorInline StatementsInline 'Next' (WS LoopControlVariable)?
 ErrorHandlingStatement ::= UnstructuredErrorStatement
 UnstructuredErrorStatement ::= OnErrorStatement
 OnErrorStatement ::= 'On' WS 'Error' WS ErrorClause StatementTerminator
