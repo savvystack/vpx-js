@@ -27,6 +27,7 @@ CloseParenthesis ::= ')'
 Equals ::= '='
 WS ::= [#x09#x20]
 Comment ::= ("'" | 'REM') [^#x0d#x0a]* {ignoreCase=true}
+Bang ::= '!'
 
 /* 13.1.2 Identifiers */
 
@@ -235,7 +236,7 @@ SimpleExpression ::= LiteralExpression | ParenthesizedExpression | SimpleNameExp
 LiteralExpression ::= Literal
 ParenthesizedExpression ::= OpenParenthesis Expression CloseParenthesis
 SimpleNameExpression ::= Identifier
-MemberAccessExpression ::= Period IdentifierOrKeyword | '!' Identifier
+MemberAccessExpression ::= Period IdentifierOrKeyword | Bang Identifier
 
 InvocationExpression ::= InvocationMemberAccessExpression | SimpleNameExpression ( ( OpenParenthesis ArgumentList CloseParenthesis )* InvocationMemberAccessExpression | WS ArgumentList | ArgumentList+ | OpenParenthesis ArgumentList CloseParenthesis | EmptyArgument+ InvocationMemberAccessExpression? )?
 InvocationMemberAccessExpression ::= MemberAccessExpression ( ( OpenParenthesis ArgumentList CloseParenthesis | EmptyArgument )* MemberAccessExpression )* ( WS ArgumentList | ArgumentList+ | EmptyArgument+ )?
